@@ -1,7 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import NavBar from './components/NavBar.vue';
-import Dashboard from './components/Dashboard.vue';
+import NavBar from './components/common/NavBar.vue';
 
 </script>
 
@@ -10,7 +9,7 @@ import Dashboard from './components/Dashboard.vue';
 text-white flex flex-col items-center">
 
     <NavBar />
-    <Dashboard />
+    <RouterView />
   </div>
 </template>
 

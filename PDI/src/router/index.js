@@ -1,23 +1,41 @@
+// router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+
+// Importações diretas (para teste)
+const HomeView = () => import('../views/HomeView.vue')
+const PdiListPage = () => import('@/modules/pdi/pages/PdiListPage.vue')
+const AboutView = () => import('../views/AboutView.vue')
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: HomeView
+    },
+    {
+      path: '/pdi-list',
+      name: 'pdi-list',
+      component: PdiListPage
     },
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
+      component: AboutView
     },
-  ],
+    // Rota de fallback para teste
+    {
+      path: '/test',
+      redirect: '/'
+    }
+  ]
+})
+
+// Middleware para debug
+router.beforeEach((to, from, next) => {
+  console.log('Navegando de:', from.path, 'para:', to.path)
+  next()
 })
 
 export default router
